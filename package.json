@@ -5,7 +5,10 @@
   },
   "dependencies": {
     "@vueuse/core": "^8.2.0",
-    "vue": "^3.2.31"
+    "sass": "^1.77.4",
+    "sass-loader": "^14.2.1",
+    "vue": "^3.2.31",
+    "vue-multiselect": "^3.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.4",
