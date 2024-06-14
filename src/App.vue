@@ -4,6 +4,9 @@
     <ImportData v-else-if="status === PageStatus.IMPORT" />
     <Random v-else-if="status === PageStatus.PLAY_STORE_LIST" />
     <StoreList v-else-if="status === PageStatus.EDIT_STORE_LIST" />
+    <div class="footer">
+      Copyright &copy; Boggy Jang. All rights reserved.
+    </div>
   </div>
 </template>
 
@@ -19,7 +22,7 @@ const { status, storeLists, editIdx, tempEditStoreList } = SiteState
 </script>
 
 <style lang="scss">
-@import 'vue-multiselect/dist/vue-multiselect.css';
+@import 'vue-select/dist/vue-select.css';
 @import 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0';
 
 :root {
@@ -37,12 +40,14 @@ const { status, storeLists, editIdx, tempEditStoreList } = SiteState
   --button-bg-danger: #ff6666;
   --button-border-danger: #ff5555;
   --button-text-danger: #fff;
+
+  --tag-bg: #41b883;
 }
 
 html {
   min-height: 100vh;
   background: #111;
-  background-image: linear-gradient(0deg, #111c, #111f), url('https://picsum.photos/id/223/1000/1000?blur=10');
+  background-image: linear-gradient(0deg, #111f, #111a), url('https://picsum.photos/id/223/100/100?blur=2');
   background-size: cover;
   background-position: center center;
   color: #f2f2f2;
@@ -145,42 +150,56 @@ label {
   margin-right: 0.5rem;
 }
 
-.multiselect {
-  min-height: auto;
-
-  &__tags {
-    padding: 0.4rem 2rem 0.4rem 0.4rem;
-    min-height: auto;
+.v-select {
+  .vs__dropdown-toggle {
+    min-height: 100%;
+    // padding: 0.4rem 1rem;
+    outline: none;
     background: var(--input-bg);
-    border: 1px solid var(--input-border);
     border-radius: var(--form-control-radius);
-  }
-
-  &__input {
-    background: initial;
-    border-radius: initial;
+    border: 1px solid var(--input-border);
+    box-sizing: border-box;
     color: var(--input-text);
+    font-size: 1rem;
+    vertical-align: middle;
 
-    &::placeholder {
-      color: var(--input-text);
+    &:hover {
+      border-color: color-mix(in srgb, var(--input-border) 100%, #fff 10%);
+    }
+
+    &:focus {
+      border-color: color-mix(in srgb, var(--input-border) 100%, #fff 20%);
+    }
+
+    .vs__selected-options {
+      align-items: baseline;
+
+      input {
+        border: 0;
+      }
+
+      .vs__selected {
+        padding: 0.2rem 0.5rem;
+        background: var(--tag-bg);
+        border: 0;
+        color: #fff;
+        font-size: 0.9rem;
+
+        .vs__deselect {
+          padding: 2px;
+
+          svg {
+            transform: scale(0.7);
+          }
+        }
+      }
     }
   }
 
-  &__select::before {
-    border-color: currentColor transparent transparent transparent;
-  }
-
-  &__tags-wrap {
-    margin-bottom: -10px;
-    display: block;
-  }
-
-  &__placeholder {
-    margin-bottom: 0;
-  }
-
-  &__input {
-    margin-top: 10px;
+  .vs__dropdown-menu {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    backdrop-filter: blur(20px);
   }
 }
 
@@ -193,9 +212,10 @@ label {
   padding: 4rem 1rem;
   margin: 1rem 0;
   border-radius: var(--card-radius);
-  background-image: linear-gradient(0deg, #765c, #654f), url(https://picsum.photos/id/223/1000/1000);
+  background-image: linear-gradient(0deg, #444f5acc, #07182a44);
   background-size: cover;
   background-position: center center;
+  text-align: center;
 
   & > :where(h1, h2, h3, h4, h5, h6):first-child {
     margin-top: 0;
@@ -214,6 +234,13 @@ label {
 }
 
 .actions {
+  text-align: center;
+}
+
+.footer {
+  margin: 4rem 0;
+  color: #fff6;
+  font-size: 0.9rem;
   text-align: center;
 }
 </style>

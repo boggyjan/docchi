@@ -1,8 +1,12 @@
 import { PageStatus } from '../enums'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useStorage } from '@vueuse/core'
 
 const status = ref(PageStatus.STORE_LISTS)
+watch(status, () => {
+  window.scrollTo(0, 0)
+})
+
 const storeLists = useStorage('store-list', [], localStorage)
 const editIdx = ref(0)
 const tempEditStoreList = ref()

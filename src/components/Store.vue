@@ -1,15 +1,16 @@
 <template>
   <div class="store">
-    <input v-model="props.store.title">
+    <input
+      v-model="props.store.title"
+      placeholder="請輸入店家名稱"
+      required
+    >
 
-    <Multiselect
+    <vSelect
       v-model="props.store.tags"
-      tag-placeholder="新增這個標籤"
-      placeholder="選擇一個標籤"
+      taggable
+      multiple
       :options="tagOptions"
-      :multiple="true"
-      :taggable="true"
-      @tag="addTag"
     />
 
     <button
@@ -25,7 +26,7 @@
 <script setup lang="ts">
 import { SiteState } from '../hooks'
 import { ref, watch } from 'vue'
-import Multiselect from 'vue-multiselect'
+import vSelect from 'vue-select'
 
 const { storeLists, tagOptions } = SiteState
 
@@ -48,5 +49,9 @@ function addTag (event) {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr auto;
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

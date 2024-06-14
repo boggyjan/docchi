@@ -1,12 +1,24 @@
 <template>
-  <div class="store-list-wrapper">
-    <div class="card store-info">
-      主題名稱
-      <input v-model="tempEditStoreList.title">
+  <form
+    class="store-list-wrapper"
+    @submit.prevent="saveStoreList(editIdx)"
+  >
+    <div class="hero">
+      <h1>
+        編輯用餐主題列表
+      </h1>
+      <div>
+        您可以在此新增編輯用餐主題與新增移除相關的餐廳
+      </div>
     </div>
 
-    <div class="card store-list">
-      餐廳列表
+    <div class="card">
+      主題名稱：
+      <input v-model="tempEditStoreList.title">
+
+      <hr>
+
+      餐廳列表：
       <Store
         v-for="(store, idx) in tempEditStoreList.list"
         :key="`store_${idx}`"
@@ -28,9 +40,8 @@
 
     <div class="card actions">
       <button
-        type="button"
+        type="submit"
         class="primary"
-        @click="saveStoreList(editIdx)"
       >
         <span class="material-symbols-outlined">
           save
@@ -44,7 +55,7 @@
         @click="playStoreList()"
       >
         <span class="material-symbols-outlined">
-          point_scan
+          restaurant
         </span>
         開始玩
       </button>
@@ -59,7 +70,7 @@
         返回用餐主題
       </button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script setup lang="ts">

@@ -1,9 +1,18 @@
 <template>
   <div class="import-data-wrapper">
-    <div class="card">
+    <div class="hero">
       <h1>
         從 eatSomething 匯入
       </h1>
+      <div>
+        你可以從 eatSomething 匯入你的餐廳列表，就不用再花時間打一次囉！
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>
+        步驟教學
+      </h2>
       <ol>
         <li>
           打開 https://tool.puckwang.com/tools/eatSomething/
@@ -31,6 +40,9 @@
 
     <form @submit.prevent="importData">
       <div class="card">
+        <h2>
+          貼入 eatSomething 資料
+        </h2>
         <textarea
           v-model="dataForImport"
           placeholder="請填入eatSomething的JSON格式資料"

@@ -28,7 +28,7 @@
             @click="playStoreList(idx)"
           >
             <span class="material-symbols-outlined">
-              point_scan
+              restaurant
             </span>
             開始玩
           </button>
